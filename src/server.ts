@@ -13,6 +13,27 @@ import { v4 as uuid } from "uuid";
 
 // O "!" serve para dizer que tal valor é obrigatório
 
+const users = [
+  {
+    _id: uuid(),
+    name: "Lucas Duarte",
+    email: "lucas.duarte@gmail.com",
+    active: true,
+  },
+  {
+    _id: uuid(),
+    name: "Lucas Duarte1",
+    email: "lucas.duarte@gmail.com",
+    active: false,
+  },
+  {
+    _id: uuid(),
+    name: "Lucas Duarte2",
+    email: "lucas.duarte@gmail.com",
+    active: false,
+  },
+];
+
 const typeDefs = gql`
   type User {
     _id: ID!
@@ -31,33 +52,35 @@ const typeDefs = gql`
   type Query {
     hello: String
     users: [User!]!
+    findByEmail(email: String!): User!
+  }
+
+  type Mutation {
+    createUser(name: String!, email: String!): User!
   }
 `;
 
 const resolvers = {
   Query: {
     hello: () => "Hello World",
+    users: () => users,
+    findByEmail: (_, args) => {
+      return users.find((user) => user.email === args.email);
+    },
+  },
 
-    users: () => [
-      {
+  Mutation: {
+    createUser: (_, args) => {
+      const newUser = {
         _id: uuid(),
-        name: "Lucas Duarte",
-        email: "lucas.duarte@gmail.com",
+        name: args.name,
+        email: args.email,
         active: true,
-      },
-      {
-        _id: uuid(),
-        name: "Lucas Duarte1",
-        email: "lucas.duarte@gmail.com",
-        active: false,
-      },
-      {
-        _id: uuid(),
-        name: "Lucas Duarte2",
-        email: "lucas.duarte@gmail.com",
-        active: false,
-      },
-    ],
+      };
+
+      users.push(newUser);
+      return newUser;
+    },
   },
 };
 
