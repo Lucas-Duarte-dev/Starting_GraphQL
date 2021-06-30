@@ -13,26 +13,7 @@ import { v4 as uuid } from "uuid";
 
 // O "!" serve para dizer que tal valor é obrigatório
 
-const users = [
-  {
-    _id: uuid(),
-    name: "Lucas Duarte",
-    email: "lucas.duarte@gmail.com",
-    active: true,
-  },
-  {
-    _id: uuid(),
-    name: "Lucas Duarte1",
-    email: "lucas.duarte@gmail.com",
-    active: false,
-  },
-  {
-    _id: uuid(),
-    name: "Lucas Duarte2",
-    email: "lucas.duarte@gmail.com",
-    active: false,
-  },
-];
+const users = [];
 
 const typeDefs = gql`
   type User {
