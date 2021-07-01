@@ -1,5 +1,4 @@
 import { startServer } from "./startServer";
-import { v4 as uuid } from "uuid";
 import typeDefs from "./graphql/typeDefs";
 import resolvers from "./graphql/resolvers";
 
