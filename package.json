@@ -7,7 +7,7 @@
     "dev": "tsnd --respawn --transpile-only  --ignore-watch node_modules src/server.ts --inspect *.gql"
   },
   "dependencies": {
-    "apollo-server": "^2.25.2",
+    "apollo-server": "^2.25.3",
     "graphql": "^15.5.1",
     "lodash": "^4.17.21",
     "merge-graphql-schemas": "^1.7.8",
